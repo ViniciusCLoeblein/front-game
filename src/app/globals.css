@@ -6,16 +6,39 @@
   --background: #ffffff;
   --foreground: #171717;
 }
-/* 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
+
+::-webkit-scrollbar {
+  display: block;
+  width: 4px;
+  height: 5px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 3px;
+  height: 3px;
+  background-color: rgb(158, 158, 158);
+  border-radius: 5px;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat"),
+    url("../app/fonts/Montserrat-Regular.ttf") format("truetype");
+}
+
+* {
+  font-family: "Montserrat", sans-serif, Arial;
+}
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--foreground) !important;
+  background: var(--background) !important;
+  background-color: #F9FAFB !important;
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+button {
+  outline: 'none' !important;
 }

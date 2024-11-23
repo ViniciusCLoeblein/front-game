@@ -2,38 +2,37 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import instance from '@/service'
-import { login } from '@/service/auth'
+import { toast } from 'react-toastify'
+import { register } from '@/service/auth'
 import { useRouter } from 'next/navigation'
 import Input from '@/components/inputs/input'
 import { useForm } from '@tanstack/react-form'
 import { useMutation } from '@tanstack/react-query'
-import { setUserCookies } from '@/functions/cookies'
 import { useCallback, useEffect, useState } from 'react'
 import { zodValidator } from '@tanstack/zod-form-adapter'
 import { MdVisibilityOff, MdVisibility } from 'react-icons/md'
 import { CircularProgress, InputAdornment } from '@mui/material'
 import Button from '@/components/button'
 
-export default function Login() {
+export default function Register() {
   const router = useRouter()
   const [showPswd, setShowPswd] = useState(false)
-  const [valor, setValor] = useState({ password: '', email: '' })
+  const [valor, setValor] = useState({ password: '', email: '', name: '' })
 
-  const loginAuth = useMutation({
-    mutationFn: login,
-    onSuccess: (r) => {
-      setUserCookies(JSON.stringify(r))
-      instance.defaults.headers.common.Authorization = `Bearer ${r.accessToken}`
-      router.push('/')
+  const registerAuth = useMutation({
+    mutationFn: register,
+    onSuccess: () => {
+      toast.success('Cadastro realizado com sucesso!')
+      router.push('/usuario/acessar')
     },
+    onError: () => toast.error('Ocorreu um erro ao realizar o cadastro.'),
   })
 
   const form = useForm({
     defaultValues: valor,
     validatorAdapter: zodValidator(),
     onSubmit: ({ value }) => {
-      loginAuth.mutateAsync(value)
+      registerAuth.mutateAsync(value)
     },
   })
 
@@ -69,13 +68,27 @@ export default function Login() {
       </div>
       <div className="max-w-md w-full bg-white bg-opacity-90 p-10 rounded-lg shadow-2xl space-y-8 z-10 backdrop-blur-lg">
         <h2 className="text-2xl font-extrabold text-center w-full text-cyan-800">
-          Iniciar sessão
+          Criar uma nova conta
         </h2>
         <p className="text-sm text-gray-900">
-          Bem-vindo! <br />
-          Entre com suas credenciais para acessar sua conta.
+          Preencha os dados abaixo para criar uma conta.
         </p>
         <form className="space-y-6" onSubmit={handleSubmit}>
+          <form.Field name="name">
+            {(v) => (
+              <Input
+                required
+                fullWidth
+                size="small"
+                type="text"
+                label="Nome"
+                autoComplete="name"
+                value={v.state.value}
+                placeholder="Informe seu nome completo"
+                onChange={(e) => v.handleChange(e.target.value)}
+              />
+            )}
+          </form.Field>
           <form.Field name="email">
             {(v) => (
               <Input
@@ -100,7 +113,7 @@ export default function Login() {
                 label="Senha"
                 value={v.state.value}
                 autoComplete="new-password"
-                placeholder="Informe sua senha"
+                placeholder="Crie uma senha"
                 type={showPswd ? 'text' : 'password'}
                 onChange={(e) => v.handleChange(e.target.value)}
                 InputProps={{
@@ -128,26 +141,26 @@ export default function Login() {
             )}
           </form.Field>
           <p className="text-sm">
-            Ainda não possui uma conta?{' '}
+            Já possui uma conta?{' '}
             <Link
               className="text-frgprimary cursor-pointer text-cyan-700 hover:text-cyan-800"
-              href={'/usuario/cadastro'}
+              href={'/usuario/acessar'}
             >
-              Crie uma agora
+              Faça login
             </Link>
           </p>
           <Button
+            type="submit"
             variant="contained"
             className="!bg-cyan-700 w-full !text-white"
-            type="submit"
             endIcon={
-              loginAuth.isPending ? (
+              registerAuth.isPending ? (
                 <CircularProgress size={18} className="!text-white" />
               ) : null
             }
-            disabled={loginAuth.isPending}
+            disabled={registerAuth.isPending}
           >
-            {loginAuth.isPending ? 'Carregando...' : 'entrar'}
+            {registerAuth.isPending ? 'Carregando...' : 'Cadastrar'}
           </Button>
         </form>
       </div>

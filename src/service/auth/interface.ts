@@ -10,3 +10,9 @@ export interface LoginRes {
   accessToken: string
   accessTokenExpiresAt: string
 }
+
+export interface RegisterReq {
+  email: string
+  name: string
+  password: string
+}
