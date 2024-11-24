@@ -41,7 +41,12 @@ const SidebarComponent = ({ open, setOpen }: NavbarComponentProps) => {
       <Box sx={{ width: 330, overflow: 'auto', position: 'relative' }}>
         <List component="nav" aria-labelledby="nested-list-subheader">
           <ListItem disablePadding>
-            <ListItemButton onClick={() => router.push('/usuario/sobre')}>
+            <ListItemButton
+              onClick={() => {
+                router.push('/usuario/sobre')
+                setOpen(false)
+              }}
+            >
               <ListItemIcon className="!text-white">
                 <MdSettingsSuggest />
               </ListItemIcon>
@@ -51,7 +56,11 @@ const SidebarComponent = ({ open, setOpen }: NavbarComponentProps) => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton onClick={() => {}}>
+            <ListItemButton
+              onClick={() => {
+                setOpen(false)
+              }}
+            >
               <ListItemIcon className="!text-white">
                 <MdContactSupport />
               </ListItemIcon>
@@ -61,7 +70,11 @@ const SidebarComponent = ({ open, setOpen }: NavbarComponentProps) => {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton onClick={() => {}}>
+            <ListItemButton
+              onClick={() => {
+                setOpen(false)
+              }}
+            >
               <ListItemIcon className="!text-white">
                 <MdContactSupport />
               </ListItemIcon>

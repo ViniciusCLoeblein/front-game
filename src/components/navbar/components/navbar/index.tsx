@@ -20,6 +20,8 @@ const NavbarComponent = ({ open, setOpen }: NavbarComponentProps) => {
     setAnchorConta(event.currentTarget)
   }
 
+  console.log('token de acesso gerado: ', user?.accessToken)
+
   return (
     <Box>
       <AppBar position="fixed" className="!pr-0 !z-50" id="navbar">
