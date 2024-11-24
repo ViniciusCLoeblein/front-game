@@ -58,6 +58,7 @@ const SidebarComponent = ({ open, setOpen }: NavbarComponentProps) => {
           <ListItem disablePadding>
             <ListItemButton
               onClick={() => {
+                router.push('/game/cadastro-mapa')
                 setOpen(false)
               }}
             >
@@ -72,6 +73,7 @@ const SidebarComponent = ({ open, setOpen }: NavbarComponentProps) => {
           <ListItem disablePadding>
             <ListItemButton
               onClick={() => {
+                router.push('/game/jogar')
                 setOpen(false)
               }}
             >
