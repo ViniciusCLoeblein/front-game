@@ -32,6 +32,15 @@ const Maps: React.FC = () => {
     deleteMap.mutate({ id })
   }
 
+  function reload() {
+    if (page === 1) {
+      maps.refetch()
+    } else {
+      setPage(1)
+    }
+    setOpen({ active: false, data: undefined })
+  }
+
   return (
     <>
       <div className="p-8 flex flex-col text-gray-900 items-center">
@@ -70,10 +79,7 @@ const Maps: React.FC = () => {
           open={open.active}
           data={open.data}
           setOpen={setOpen}
-          reload={() => {
-            setPage(1)
-            setOpen({ active: false, data: undefined })
-          }}
+          reload={reload}
         />
       )}
     </>

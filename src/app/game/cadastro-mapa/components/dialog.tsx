@@ -111,6 +111,7 @@ const DialogMaps = ({ open, setOpen, data, reload }: DialogMapsProps) => {
                   <Input
                     required
                     fullWidth
+                    type="number"
                     label="Qtd casas"
                     value={v.state.value}
                     onBlur={v.handleBlur}
