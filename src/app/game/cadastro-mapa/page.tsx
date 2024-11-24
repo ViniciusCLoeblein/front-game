@@ -22,15 +22,11 @@ const Maps: React.FC = () => {
   const deleteMap = useMutation({
     mutationFn: deleteMaps,
     onSuccess: () => {
-      setPage(1)
+      reload()
       toast.success('Cadastro a deletado com sucesso!')
     },
     onError: () => toast.error('Ocorreu um erro!'),
   })
-
-  function remove(id: number) {
-    deleteMap.mutate({ id })
-  }
 
   function reload() {
     if (page === 1) {
@@ -39,6 +35,10 @@ const Maps: React.FC = () => {
       setPage(1)
     }
     setOpen({ active: false, data: undefined })
+  }
+
+  function remove(id: number) {
+    deleteMap.mutate({ id })
   }
 
   return (
