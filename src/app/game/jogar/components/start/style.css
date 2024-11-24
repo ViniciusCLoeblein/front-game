@@ -1,0 +1,72 @@
+.game-container {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.board-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 70px); /* 10 casas por linha, cada uma com 70px */
+  grid-gap: 10px; /* Espaço entre as casas */
+  align-items: center;
+}
+
+.start, .finish {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: gold;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.cell {
+  width: 70px;
+  height: 70px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  border: 1px solid #ccc;
+}
+
+.house-number {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.9); /* Cor branca com leve transparência */
+}
+
+.player-button {
+  margin: 10px 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #74c0fc; /* Azul claro */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.player-button:disabled {
+  background-color: #ccc; /* Cinza para botão desativado */
+  cursor: not-allowed;
+}
+
+.player-button:hover:not(:disabled) {
+  background-color: #4dabf7; /* Azul mais escuro no hover */
+}

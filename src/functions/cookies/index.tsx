@@ -4,9 +4,9 @@ import { getCookie, setCookie, deleteCookie } from 'cookies-next'
 
 export const deleteAllCookies = () => {
   deleteCookie('LOGIN_INFO')
-  // if (isClient()) {
-  //   window.location.href = '/usuario/acessar'
-  // }
+  if (isClient()) {
+    window.location.href = '/usuario/acessar'
+  }
 }
 
 export const setUserCookies = (data: string) => {
